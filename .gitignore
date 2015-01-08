@@ -1,1 +1,5 @@
 .idea/*
+hooks/*
+platforms/*
+plugins/*
+less/*
