@@ -1,29 +1,41 @@
-<main id="{{page-name}}">
-{{#header}}
-    <header class="{{header.class}}">{{{header.code}}}</header>
-{{/header}}
-{{#main}}
-    <article class="{{main.class}}">{{{main.code}}}</article>
-{{/main}}
-{{#footer}}
+<main id="{{page_name}}" class="{{main.class}}">
+    {{#header}}
+    <header class="{{header.class}}">
+        {{#header.backButton}}
+        <button class="back-btn btn {{header.backButton.icon}} fl-left">{{page_title}}</button>
+        {{/header.backButton}}
+
+        {{^header.backButton}}
+        {{#aside.code}}
+        <button class="menu-btn {{aside.button.position}} {{#aside.button.iconOnly}}icon{{/aside.button.iconOnly}}"
+                data-menu-position="{{aside.position}}">{{page_title}}</button>
+        {{/aside.code}}
+        {{/header.backButton}}
+
+        {{#dropdown.code}}
+        <button class="dropdown-btn btn {{#dropdown.button.iconOnly}}icon{{/dropdown.button.iconOnly}} {{dropdown.button.icon}} fl-{{dropdown.button.position}}"
+                data-menu="menu">{{dropdown.button.text}}</button>
+        {{/dropdown.code}}
+    </header>
+    {{/header}}
+
+    {{#article}}
+    <article class="{{article.class}}">{{{article.code}}}</article>
+    {{/article}}
+
+    {{#footer.code}}
     <footer class="{{footer.class}}">{{{footer.code}}}</footer>
-{{/footer}}
+    {{/footer.code}}
+
+    {{#dropdown.code}}
+    <menu class="dropdown-menu {{dropdown.position}} {{dropsown.class}}">
+        {{dropdown.code}}
+    </menu>
+    {{/dropdown.code}}
 </main>
 
-<script type="text/javascript">
-var page = {
-    'page-name' : '_PAGE NAME_',
-    'header'    : {
-        'class' : '...',
-        'code'  : '...'
-    },
-    'main'      : {
-        'class' : '...',
-        'code'  : '...'
-    },
-    'footer'    : {
-        'class' : '...',
-        'code'  : '...'
-    }
-};
-</script>
+{{#aside.code}}
+<aside class="mobile-menu {{aside.position}} {{aside.class}}">
+    {{aside.code}}
+</aside>
+{{/aside.code}}
