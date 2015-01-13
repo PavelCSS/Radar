@@ -1,7 +1,7 @@
 {
     "lib": {
         "www": {
-            "id": "com._application name_.seosamba",
+            "id": "com.radar.seosamba",
             "version": "master",
             "uri": "https://github.com/phonegap/phonegap-app-hello-world/archive/master.tar.gz",
             "link": false
