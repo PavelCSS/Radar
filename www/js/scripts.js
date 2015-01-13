@@ -4,11 +4,12 @@ window.addEventListener('hashchange', openPage, false);
 document.addEventListener('backbutton', goBack, false);
 
 function onDeviceReady(){
-    openPage();
+    StatusBar.hide();
     $('html').addClass(device.platform.toLowerCase());
     //    FastClick.attach(document.body);
     navigator.splashscreen.hide();
+    openPage();
 }
 
 $(document)
-    .on('singleTap', '.back-btn', goBack);
+    .on('tap', '.back-btn', goBack);
