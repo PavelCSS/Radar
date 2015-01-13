@@ -12,14 +12,13 @@
 //	PAGE Style
 //==================================================
 main{
-    height                     : 100%;
-    background                 : @main-bg;
-    background-size            : cover;
-    overflow                   : auto;
-    -webkit-overflow-scrolling : touch;
-    position                   : relative;
-    z-index                    : 1;
-    .box-shadow(0 0 10px fade(#000, 50%))
+    height          : 100%;
+    background      : @main-bg;
+    background-size : cover;
+    overflow        : auto;
+    position        : relative;
+    z-index         : 1;
+    .box-shadow(0 0 10px fade(#000, 50%));
 }
 
 //	HEADER Style
@@ -29,9 +28,16 @@ main{
 //	Aricle Style
 //==================================================
 article{
-    background : @article-bg;
-    color      : @article-color;
-    padding    : @padding-base-vertical @padding-base-horizontal;
+    width   : 100%;
+    padding : @padding-base-vertical @padding-base-horizontal;
+
+    & when not (@article-bg = @main-bg){
+        background : @article-bg;
+    }
+
+    & when not (@article-color = @text-color){
+        background : @article-color;
+    }
 }
 
 //	FOOTER Style
@@ -55,5 +61,21 @@ aside{
     }
 
     // -- NAV Style
-    nav{ }
+    nav{
+        a{
+            display       : block;
+            padding       : 0 @padding-base-horizontal;
+            border-bottom : 1px solid rgba(0, 0, 0, .05);
+
+            &.touch{
+                .rgba(#000; .05);
+            }
+        }
+    }
+}
+
+.radar{
+    .border-radius(10em);
+    width  : 10em;
+    height : 10em;
 }

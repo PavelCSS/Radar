@@ -6,10 +6,13 @@
         {{/header.backButton}}
 
         {{^header.backButton}}
-        {{#aside.code}}
-        <button class="menu-btn {{aside.button.position}} {{#aside.button.iconOnly}}icon{{/aside.button.iconOnly}}"
-                data-menu-position="{{aside.position}}">{{page_title}}</button>
-        {{/aside.code}}
+        {{#aside}}
+        <button class="menu-btn left"
+                data-menu-position="left">{{page_title}}</button>
+        {{/aside}}
+        {{^aside}}
+            <span class="ml1em mr1em">{{page_title}}</span>
+        {{/aside}}
         {{/header.backButton}}
 
         {{#dropdown.code}}
@@ -34,8 +37,21 @@
     {{/dropdown.code}}
 </main>
 
-{{#aside.code}}
-<aside class="mobile-menu {{aside.position}} {{aside.class}}">
-    {{aside.code}}
+{{#aside}}
+<aside class="mobile-menu left mtH">
+    <nav>
+        <a href="#login">Logout</a>
+    </nav>
 </aside>
-{{/aside.code}}
+{{/aside}}
+
+{{#scripts}}
+    {{#src}}
+    <script src="{{src}}"></script>
+    {{/src}}
+    {{#code}}
+    <script>
+        {{{code}}}
+    </script>
+    {{/code}}
+{{/scripts}}

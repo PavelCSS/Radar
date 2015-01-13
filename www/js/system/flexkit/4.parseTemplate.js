@@ -1,4 +1,5 @@
 function parseTemplate(tmpl, json, cache, callback){
+    $('body').removeAttr('data-menu-open');
     showLoading();
     json = (typeof json !== 'undefined') ? json : false;
 

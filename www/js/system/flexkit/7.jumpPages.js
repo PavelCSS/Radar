@@ -23,6 +23,7 @@ function openPage(){
     if(pageName === 'login'){
         localStorage.removeItem('pageList');
         localStorage.removeItem("login");
+        $('aside').remove()
     }
 
     var pages = localStorage.getItem('pageList');

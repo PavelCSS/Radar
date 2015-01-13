@@ -2,48 +2,6 @@
     z-index : @mobile-bar-zindex + 2;
     .transition(all; 0.3s);
 
-    a{
-        padding-top    : 0;
-        padding-bottom : 0;
-
-        &:hover, &.current{
-            background : @menu-bg-li-hover;
-            color      : @menu-color-li-hover;
-        }
-    }
-
-    & > * ul{
-        width      : auto;
-        position   : static;
-        display    : none !important;
-        background : @menu-drop-down-list-bg;
-        color      : @menu-drop-down-list-color;
-        .box-shadow(none);
-
-        a{
-            &:hover, &.current{
-                background : @menu-drop-down-list-bg-hover;
-                color      : @menu-drop-down-list-color-hover;
-            }
-        }
-
-        &.open{
-            display : block !important;
-        }
-    }
-
-    li{
-        float         : none;
-        display       : block;
-        border        : none;
-        border-bottom : 1px solid rgba(0, 0, 0, .1);
-
-        li{
-            border     : none;
-            border-top : 1px solid rgba(0, 0, 0, .1);
-        }
-    }
-
     &.top{
         .transform(translateY(-100%));
     }

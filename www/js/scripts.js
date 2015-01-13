@@ -12,4 +12,4 @@ function onDeviceReady(){
 }
 
 $(document)
-    .on('singleTap', '.back-btn', goBack);
+    .on('tap', '.back-btn', goBack);
