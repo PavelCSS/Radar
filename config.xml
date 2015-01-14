@@ -39,8 +39,8 @@
     <!--<gap:plugin name="org.apache.cordova.console" />                &lt;!&ndash; https://github.com/apache/cordova-plugin-console/blob/master/doc/index.md &ndash;&gt;-->
     <!--<gap:plugin name="org.apache.cordova.contacts" />               &lt;!&ndash; https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md &ndash;&gt;-->
     <gap:plugin name="org.apache.cordova.device" />                 <!-- https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md -->
-    <!--<gap:plugin name="org.apache.cordova.device-motion" />          &lt;!&ndash; https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md &ndash;&gt;-->
-    <!--<gap:plugin name="org.apache.cordova.device-orientation" />     &lt;!&ndash; https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md &ndash;&gt;-->
+    <gap:plugin name="org.apache.cordova.device-motion" />          <!-- https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md -->
+    <gap:plugin name="org.apache.cordova.device-orientation" />     <!-- https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md -->
     <!--<gap:plugin name="org.apache.cordova.dialogs" />                &lt;!&ndash; https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md &ndash;&gt;-->
     <!--<gap:plugin name="org.apache.cordova.file" />                   &lt;!&ndash; https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md &ndash;&gt;-->
     <!--<gap:plugin name="org.apache.cordova.file-transfer" />          &lt;!&ndash; https://github.com/apache/cordova-plugin-file-transfer/blob/master/doc/index.md &ndash;&gt;-->
