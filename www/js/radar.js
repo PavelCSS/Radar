@@ -33,6 +33,9 @@ function radar(){
             .attr({
                 'data-atDeg' : peoples[i].angle
             }));
+
+        var typeRadar = sonar ? '#sonar' : '#radar';
+        $(typeRadar).addClass('animated');
     }
 
     var options = { frequency : 10 };

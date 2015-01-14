@@ -1,10 +1,13 @@
+// @radar-type => sonar or radar
+@radar-type       : sonar;
 @radar-diameter   : 300px;
 @radar-radius     : @radar-diameter / 2;
 @radar-color      : @color-morningR;
 @radar-dot-width  : 4px;
-@radar-line-speed : 2s; // for radar = 5s, for sonar = 2.5s
+// @radar-line-speed => for radar = 5s, for sonar = 2.5s
+@radar-line-speed : 2s;
 
-#radar, #sonar{
+#@{radar-type}{
     position   : relative;
     width      : @radar-diameter;
     height     : @radar-diameter;
@@ -66,65 +69,50 @@
 
     }
 
-    .dot{
-        background  : lighten(@radar-color, 20%);
-        position    : absolute;
-        width       : @radar-dot-width;
-        height      : @radar-dot-width;
-        margin-top  : -(@radar-dot-width / 2);
-        margin-left : -(@radar-dot-width / 2);
-        .opacity(.3);
-        .border-radius(@radar-dot-width);
-        .box-shadow(0 0 3px 4px @radar-color);
-        .animation(dot_pulse linear @radar-line-speed infinite);
+    &.animated{
+
+        .line when (@radar-type = radar){
+            position : absolute;
+            top      : 0;
+            left     : 0;
+            bottom   : 50%;
+            right    : 50%;
+            z-index  : 9999;
+            //        .transform-origin(@radar-radius @radar-radius);
+            .transform-origin(100% 100%);
+            .border-radius(@radar-diameter 0 0 0);
+            .animation(radar @radar-line-speed infinite linear);
+            .gradient(linear-gradient(45deg, fade(@radar-color, 1%) 0%, fade(@radar-color, 1%) 50%, @radar-color 100%));
+        }
+
+        .line when (@radar-type = sonar){
+            position : absolute;
+            left     : 0;
+            top      : 0;
+            bottom   : 0;
+            right    : 0;
+            margin   : auto;
+            z-index  : 999;
+            width    : 6px;
+            height   : 6px;
+            .border-radius(@radar-diameter);
+            .animation(sonar @radar-line-speed infinite linear);
+            .box-shadow(inset 0 0 25px 5px fade(@radar-color, 50%));
+        }
+
+        .dot{
+            background  : lighten(@radar-color, 20%);
+            position    : absolute;
+            width       : @radar-dot-width;
+            height      : @radar-dot-width;
+            margin-top  : -(@radar-dot-width / 2);
+            margin-left : -(@radar-dot-width / 2);
+            .opacity(.3);
+            .border-radius(@radar-dot-width);
+            .box-shadow(0 0 3px 4px @radar-color);
+            .animation(dot_pulse linear @radar-line-speed infinite);
+        }
     }
-}
-
-#radar{
-
-    .line{
-        position : absolute;
-        top      : 0;
-        left     : 0;
-        bottom   : 50%;
-        right    : 50%;
-        z-index  : 9999;
-        //        .transform-origin(@radar-radius @radar-radius);
-        .transform-origin(100% 100%);
-        .border-radius(@radar-diameter 0 0 0);
-        .animation(radar @radar-line-speed infinite linear);
-        .gradient(linear-gradient(45deg, fade(@radar-color, 1%) 0%, fade(@radar-color, 1%) 50%, @radar-color 100%));
-
-        //        &:after{
-        //            content    : '';
-        //            background : @radar-color;
-        //            width      : 4px;
-        //            height     : 4px;
-        //            position   : absolute;
-        //            bottom     : -2px;
-        //            right      : -2px;
-        //            .border-radius(5px);
-        //        }
-    }
-}
-
-#sonar{
-
-    .line{
-        position : absolute;
-        left     : 0;
-        top      : 0;
-        bottom   : 0;
-        right    : 0;
-        margin   : auto;
-        z-index  : 999;
-        width    : 6px;
-        height   : 6px;
-        .border-radius(@radar-diameter);
-        .animation(sonar @radar-line-speed infinite linear);
-        .box-shadow(inset 0 0 25px 5px fade(@radar-color, 50%));
-    }
-
 }
 
 #guides{
@@ -135,25 +123,102 @@
     right    : 0;
 }
 
-@-webkit-keyframes radar{
-    from{
-        .transform(rotate(0deg));
+& when (@radar-type = radar){
+    & when (@moz = true){
+        @-moz-keyframes radar{
+            from{
+                .transform(rotate(0deg));
+            }
+            to{
+                .transform(rotate(360deg));
+            }
+        }
     }
-    to{
-        .transform(rotate(360deg));
+    & when (@webkit = true){
+        @-webkit-keyframes radar{
+            from{
+                .transform(rotate(0deg));
+            }
+            to{
+                .transform(rotate(360deg));
+            }
+        }
+    }
+
+    @keyframes radar{
+        from{
+            .transform(rotate(0deg));
+        }
+        to{
+            .transform(rotate(360deg));
+        }
     }
 }
 
-@keyframes radar{
-    from{
-        .transform(rotate(0deg));
+& when (@radar-type = sonar){
+    & when (@moz = true){
+        @-moz-keyframes sonar{
+            from{
+                width  : 5px;
+                height : 5px;
+            }
+            to{
+                width  : @radar-diameter;
+                height : @radar-diameter;
+            }
+        }
     }
-    to{
-        .transform(rotate(360deg));
+    & when (@webkit = true){
+        @-webkit-keyframes sonar{
+            from{
+                width  : 5px;
+                height : 5px;
+            }
+            to{
+                width  : @radar-diameter;
+                height : @radar-diameter;
+            }
+        }
+    }
+    @keyframes sonar{
+        from{
+            width  : 5px;
+            height : 5px;
+        }
+        to{
+            width  : @radar-diameter;
+            height : @radar-diameter;
+        }
+    }
+}
+& when (@moz = true){
+    @-moz-keyframes dot_pulse{
+        0%{
+            .opacity(1);
+        }
+        70%{
+            .opacity(.1);
+        }
+        100%{
+            .opacity(.1);
+        }
     }
 }
 
-@-moz-keyframes dot_pulse{
+& when (@webkit = true){
+    @-webkit-keyframes dot_pulse{
+        0%{
+            .opacity(1);
+        }
+        70%{
+            .opacity(.1);
+        }
+        100%{
+            .opacity(.1);
+        }
+    }
+}
+@keyframes dot_pulse{
     0%{
         .opacity(1);
     }
@@ -162,48 +227,5 @@
     }
     100%{
         .opacity(.1);
-    }
-}
-
-@-webkit-keyframes dot_pulse{
-    0%{
-        .opacity(1);
-    }
-    70%{
-        .opacity(.1);
-    }
-    100%{
-        .opacity(.1);
-    }
-}
-
-@keyframes sonar{
-    from{
-        width         : 5px;
-        height        : 5px;
-    }
-    to{
-        width         : @radar-diameter;
-        height        : @radar-diameter;
-    }
-}
-@-moz-keyframes sonar{
-    from{
-        width         : 5px;
-        height        : 5px;
-    }
-    to{
-        width         : @radar-diameter;
-        height        : @radar-diameter;
-    }
-}
-@-webkit-keyframes sonar{
-    from{
-        width         : 5px;
-        height        : 5px;
-    }
-    to{
-        width         : @radar-diameter;
-        height        : @radar-diameter;
     }
 }
