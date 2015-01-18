@@ -7,58 +7,44 @@ var pagesList = {
         }, false)
     },
     'home' : function(){
-        parseTemplate('_page.htm', {
+        parseTemplate('_home.htm', {
             'page_name'  : 'home',
             'page_title' : app_name,
-            'main'       : {
-                'class' : ''
-            },
-            'header'     : {
-                'class'      : 'fixed',
-                'backButton' : false
-            },
-            'article'    : {
-                'class' : 'mtH',
-                'code'  : '<div id="sonar">' +
-                                '<i>' +
-                                    '<i></i>' +
-                                '</i>' +
-                                '<div id="guides">' +
-                                    '<div class="line"></div>' +
-                                '</div>' +
-                          '</div>'
-            },
-            'footer'     : false,
-            'aside'      : true,
-            'dropdown'   : {
-                'position' : 'top right', // top, right, bottom, left, center, centered
-                'class'    : '',
-                'code'     : '',
-                'button'   : {
-                    'icon'     : 'icon-list5', // icon name for button
-                    'iconOnly' : true,  // true or false
-                    'text'     : 'Menu',
-                    'position' : 'right' // left, right
-                }
-            },
-            scripts : [
-                {
-                    src  : 'js/radar.js',
-                    code : 'radar();'
-                }
-            ]
-        }, false)
+            'users'      : usersList
+        }, {
+            radarTmp : document.getElementById('tmp_radar').innerHTML
+        })
+    },
+    'users' : function(){
+        parseTemplate('_users.htm', {
+            'page_name'  : 'home',
+            'page_title' : app_name,
+            'users'      : usersList
+        }, {
+            usersTmp : document.getElementById('tmp_user-list').innerHTML
+        })
+    },
+    'radar' : function(){
+        parseTemplate('_radar.htm', {
+            'page_name'  : 'home',
+            'page_title' : app_name,
+            'users'      : usersList
+        }, {
+            radarTmp : document.getElementById('tmp_radar').innerHTML
+        })
     },
     'profile' : function(){
         parseTemplate('_page.htm', {
             'page_name'  : 'profile',
-            'page_title' : app_name,
+            'page_title' : 'Profile',
             'main'       : {
                 'class' : ''
             },
             'header'     : {
                 'class'      : 'fixed',
-                'backButton' : false
+                'backButton' : {
+                    'icon'     : 'icon-arrow-left6' // icon name for button
+                }
             },
             'article'    : {
                 'class' : 'mtH',
