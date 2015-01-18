@@ -1,32 +1,46 @@
 /**
  * Created by PavelCSS on 13.01.15.
  */
-var time = 2, sonar = true;
-var peoples = [];
+var time = 2, sonar = true, peoples;
+addPeople();
 
-for (i = 0; i < 20; i++) {
-    peoples.push({
-        distance : Math.floor((Math.random() * 140) + 1),
-        angle    : Math.floor((Math.random() * 360) + 1)
-    });
-}
+setInterval(function(){
+    addPeople();
+    radar();
+}, 300000);
+
+function addPeople(){
+    peoples = [];
+    for (i = 0; i < Math.floor((Math.random() * 50) + 1); i++) {
+        peoples.push({
+            distance : Math.floor((Math.random() * 190) + 1),
+            angle    : Math.floor((Math.random() * 360) + 1)
+        });
+    }
+};
 
 function radar(){
 
-    var radius = 150;
-    for (i = 0; i < peoples.length; i++) {
-        var disX = 90 < peoples[i].angle + 90 < 270 ? radius - peoples[i].distance : radius,
-            disY = 180 < peoples[i].angle + 90 < 360 ? radius - peoples[i].distance : radius,
-            angleNew = (peoples[i].angle + 90) * Math.PI / 180,
-            getDegX = disX + peoples[i].distance - Math.round(peoples[i].distance * Math.cos(angleNew)),
-            getDegY = disY + peoples[i].distance - Math.round(peoples[i].distance * Math.sin(angleNew)),
-            delay = !sonar ? time / 360 * peoples[i].angle : time / radius * (peoples[i].distance + 5);
+    var $guides = $('#guides');
+    $guides.html('');
 
-        $('#guides').append($('<span>')
+    var radius = 50, maxDistance = 200;
+    for (i = 0; i < peoples.length; i++) {
+        var dis = ~~(peoples[i].distance / maxDistance * 50),
+            disX = 90 < peoples[i].angle < 270 ? radius - dis : radius,
+            disY = 180 < peoples[i].angle < 360 ? radius - dis : radius,
+            angleNew = (peoples[i].angle) * Math.PI / 180,
+            degX = Math.round(dis * Math.cos(angleNew)),
+            degY = Math.round(dis * Math.sin(angleNew)),
+            getDegX = disX + dis - degX,
+            getDegY = disY + dis - degY,
+            delay = !sonar ? time / 360 * Math.abs(peoples[i].angle + 5) : time / radius * (dis + 3);
+
+        $guides.append($('<span>')
             .addClass('dot')
             .css({
-                left : getDegX,
-                top  : getDegY,
+                left : getDegX + '%',
+                top  : getDegY + '%',
                 '-webkit-animation-delay' : delay + 's',
                 'animation-delay' : delay + 's'
             })

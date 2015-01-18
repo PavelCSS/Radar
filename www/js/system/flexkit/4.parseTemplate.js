@@ -1,14 +1,16 @@
-function parseTemplate(tmpl, json, cache, callback){
+function parseTemplate(tmpl, json, partial, cache, callback){
     $('body').removeAttr('data-menu-open');
     showLoading();
     json = (typeof json !== 'undefined') ? json : false;
+    partial = (typeof partial !== 'undefined') ? partial : false;
+    cache = (typeof cache !== 'undefined') ? cache : false;
 
     callback = (typeof callback == 'function') ? callback : function(html){
         $('main').replaceWith(html);
     };
     readTextFile(tmpl, function(response){
         if(json){
-            var html = Mustache.to_html(response, json);
+            var html = Mustache.to_html(response, json, partial);
             cache ? pagesCache(json.page_name, html) : '';
             callback(html);
         }else{

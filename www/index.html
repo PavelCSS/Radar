@@ -17,7 +17,6 @@
         <script src="js/system/mustache.min.js"></script> <!-- Mustache http://mustache.github.io/-->
         <script src="js/system/zepto.min.js"></script>
         <script src="js/system/quo.min.js"></script>
-        <script src="js/system/pagesList.js"></script>
         <script>
             jQuery = Zepto;
         </script>
@@ -36,4 +35,28 @@
     <body>
         <main></main>
     </body>
+
+    <script type="text/html" id="tmp_user-list">
+        <ul class="user-list list-bordered m0px">
+            {{#users}}
+                <li class="white-bg mb0-25em p5px clearfix" data-user-id="{{id}}">
+                    <img class="fl-left mr1em" src="{{photo.thumb}}" alt="{{name}}" width="50" height="50"/>
+                    <h4 class="m0px">{{name}} ({{age}})</h4>
+                    <div>Distance: {{coordinates.distance}}</div>
+                </li>
+            {{/users}}
+        </ul>
+    </script>
+
+    <script type="text/html" id="tmp_radar">
+        <div id="sonar" class="mb1em">
+            <i>
+                <i><i></i></i>
+            </i>
+            <div class="line"></div>
+            <div id="guides"></div>
+        </div>
+    </script>
+    <script src="js/pagesList.js"></script>
+    <script src="js/usersList.js"></script>
 </html>

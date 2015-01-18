@@ -31,7 +31,7 @@ article{
     width   : 100%;
     padding : @padding-base-vertical @padding-base-horizontal;
 
-    & when not (@article-bg = @main-bg){
+    & when not (@article-bg = @main-bg) and not (@article-bg = transparent){
         background : @article-bg;
     }
 
@@ -72,10 +72,4 @@ aside{
             }
         }
     }
-}
-
-.radar{
-    .border-radius(10em);
-    width  : 10em;
-    height : 10em;
 }
